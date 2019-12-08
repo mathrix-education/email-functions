@@ -9,4 +9,4 @@ sending on Google Cloud Platform.
 
 ## Architecture
 
-![](docs/architecture.png)
+![](docs/mail-bus-architecture.png)
