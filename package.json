@@ -1,0 +1,48 @@
+{
+  "name": "@mathrix-education/email-functions",
+  "version": "0.1.0",
+  "description": "Mono-repo containing the functions related to email sending on Google Cloud Platform",
+  "scripts": {
+    "build": "webpack",
+    "lint": "eslint",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:ci": "NODE_ENV=CI jest --ci --runInBand --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mathrix-education/cloud-function-template.git"
+  },
+  "keywords": [
+    "cloud-function"
+  ],
+  "author": "Mathieu Bour <mathieu@mathrix.fr>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/mathrix-education/cloud-function-template/issues"
+  },
+  "homepage": "https://github.com/mathrix-education/cloud-function-template#readme",
+  "private": true,
+  "dependencies": {
+    "@google-cloud/pubsub": "^1.1.6",
+    "@sentry/integrations": "^5.8.0",
+    "@sentry/node": "^5.9.0",
+    "mjml": "^4.5.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "@types/mjml": "^4.0.2",
+    "@types/node": "^12.12.14",
+    "@typescript-eslint/eslint-plugin": "^2.9.0",
+    "@typescript-eslint/parser": "^2.9.0",
+    "eslint": "^6.7.2",
+    "generate-package-json-webpack-plugin": "^1.0.1",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.2.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.2",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-node-externals": "^1.7.2"
+  }
+}

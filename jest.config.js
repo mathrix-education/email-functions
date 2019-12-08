@@ -1,0 +1,10 @@
+/* eslint-disable */
+module.exports = {
+  testMatch: [
+    '**/*.spec.ts',
+  ],
+  transform: {
+    '^.+\\.(ts|tsx)$': 'ts-jest',
+  },
+  coverageDirectory: 'coverage'
+};
