@@ -4,9 +4,10 @@ import { MJMLMailEvent } from '../common/interfaces/mjml-mail-event';
 import { MJMLParsingOpts } from '../common/interfaces/mjml-parsing-opts';
 import { PubSubEvent } from '../common/interfaces/pubsub-event';
 import { Sentry } from '../common/sentry';
+import { parsePubSubEvent } from '../common/utils';
 
 // Initialize global
-const sentry = new Sentry();
+const sentry = new Sentry('mjml-function');
 const pubSub = new PubSub();
 
 /**
@@ -47,7 +48,7 @@ export async function main(data: MJMLMailEvent): Promise<number> {
     delete data.mjmlOptions;
   }
 
-  await pubSub.topic(process.env.PUBSUB_FORWARD_TOPIC).publishJSON(data);
+  await pubSub.topic('email-dispatch').publishJSON(data);
 
   return 0;
 }
@@ -59,7 +60,7 @@ export async function main(data: MJMLMailEvent): Promise<number> {
  */
 exports['mjml-function'] = async (event: PubSubEvent): Promise<number> => {
   return sentry.handler(() => {
-    const data: MJMLMailEvent = JSON.parse(Buffer.from(event.data, 'base64').toString());
+    const data = parsePubSubEvent<MJMLMailEvent>(event);
     return main(data);
   });
 };

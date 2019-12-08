@@ -10,7 +10,7 @@ export class Sentry {
   /**
    * Initialise the Sentry SDK
    */
-  constructor() {
+  constructor(functionName: string = null) {
     if (process.env.SENTRY_DSN) {
       /**
        * Initialize Sentry
@@ -24,6 +24,12 @@ export class Sentry {
           root: __dirname || process.cwd(),
         })],
       });
+
+      if (functionName) {
+        SentrySDK.configureScope((scope) => {
+          scope.setTag('function', functionName);
+        });
+      }
 
       this.enabled = true;
     }

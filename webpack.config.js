@@ -1,8 +1,9 @@
 /* eslint-disable */
+const {readdirSync} = require('fs');
 const NodeExternals = require('webpack-node-externals');
 const GeneratePackageJsonPlugin = require('generate-package-json-webpack-plugin');
 
-const functions = ['mjml-function'];
+const functions = readdirSync(`${__dirname}/src`).filter(f => f !== 'common');
 
 module.exports = functions.map(name => {
   return {
