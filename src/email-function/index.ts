@@ -6,7 +6,8 @@ import { Sentry } from '../common/sentry';
 import { parsePubSubEvent } from '../common/utils';
 
 // Initialize global
-const sentry = new Sentry('email-function');
+export const name = 'email-function';
+const sentry = new Sentry(name);
 const pubSub = new PubSub();
 
 /**
@@ -31,7 +32,7 @@ async function main(data: MailEvent | MJMLMailEvent): Promise<number> {
  * Sentry wrapper.
  * @param event
  */
-exports['email-function'] = async (event: PubSubEvent): Promise<number> => {
+exports[name] = async (event: PubSubEvent): Promise<number> => {
   return sentry.handler(() => {
     const data = parsePubSubEvent<MailEvent | MJMLMailEvent>(event);
     return main(data);

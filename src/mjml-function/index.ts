@@ -7,7 +7,8 @@ import { Sentry } from '../common/sentry';
 import { parsePubSubEvent } from '../common/utils';
 
 // Initialize global
-const sentry = new Sentry('mjml-function');
+export const name = 'mjml-function';
+const sentry = new Sentry(name);
 const pubSub = new PubSub();
 
 /**
@@ -15,7 +16,7 @@ const pubSub = new PubSub();
  * @param html
  * @param options
  */
-export function parse(html: string, options: Partial<MJMLParsingOpts> = {}): string {
+function parse(html: string, options: Partial<MJMLParsingOpts> = {}): string {
   const defaultMjmlOptions: MJMLParsingOpts = {
     fonts: {
       'Roboto': 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700',
@@ -58,7 +59,7 @@ export async function main(data: MJMLMailEvent): Promise<number> {
  * Sentry wrapper.
  * @param event
  */
-exports['mjml-function'] = async (event: PubSubEvent): Promise<number> => {
+exports[name] = async (event: PubSubEvent): Promise<number> => {
   return sentry.handler(() => {
     const data = parsePubSubEvent<MJMLMailEvent>(event);
     return main(data);
