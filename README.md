@@ -9,4 +9,4 @@ sending on Google Cloud Platform.
 
 ## Architecture
 
-// TODO
+![](docs/architecture.png)
