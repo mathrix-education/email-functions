@@ -9,7 +9,7 @@ async function loadSample(name): Promise<string> {
   return (await fs.readFile(resolve(__dirname, 'samples', name))).toString();
 }
 
-function makeEvent(partial: Partial<MJMLMailEvent | MailEvent>): MailEvent {
+function makeEvent(override: Partial<MJMLMailEvent | MailEvent>): MailEvent {
   const fakeEvent = {
     from: `${faker.name.findName()} <${faker.internet.email()}>`,
     to: faker.internet.email(),
@@ -18,7 +18,7 @@ function makeEvent(partial: Partial<MJMLMailEvent | MailEvent>): MailEvent {
     html: faker.lorem.paragraphs(5),
   };
 
-  return { ...fakeEvent, ...partial };
+  return { ...fakeEvent, ...override };
 }
 
 jest.mock('@google-cloud/pubsub', () => {
