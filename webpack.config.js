@@ -34,10 +34,12 @@ module.exports = functions.map(name => {
         },
       ],
     },
-    plugins: [new GeneratePackageJsonPlugin({
-      name: `@mathrix-education/${name}`,
-      main: 'index.js'
-    }, `${__dirname}/package.json`)],
+    plugins: [
+      new GeneratePackageJsonPlugin({
+        name: `@mathrix-education/${name}`,
+        main: 'index.js',
+      }, `${__dirname}/package.json`),
+    ],
     optimization: {
       minimize: false,
     },
@@ -45,6 +47,6 @@ module.exports = functions.map(name => {
       path: `${__dirname}/dist/${name}`,
       filename: 'index.js',
     },
-    devtool: 'inline-source-map'
+    devtool: 'inline-source-map',
   };
 });
